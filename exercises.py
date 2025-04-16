@@ -259,24 +259,8 @@ def gauss(matrix):
             factor = matrix[j][i] / matrix[i][i]
             for k in range(i, columnas):
                 matrix[j][k] -= factor * matrix[i][k]
+
     return matrix
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 ''' Ejercicio 6.5. Escribir una función que dada una cadena de caracteres, devuelva:
@@ -286,6 +270,126 @@ b) Dicha cadena con la primera letra de cada palabra en mayúsculas. Por ejemplo
 república argentina debe devolver República Argentina.
 c) Las palabras que comiencen con la letra A. Por ejemplo, si recibe Antes de ayer
 debe devolver 'Antes ayer'''
+
+# a)
+
+def strings(string):
+    words = string.split()
+    letters = ""
+
+    for word in words:
+        if word:
+            letters += word[0]
+    
+    return letters
+
+# b)
+
+def first_upper(string):
+    words = string.split()
+    string_upper = ""
+    
+    for word in words:
+        if word: 
+            uppered = word[0].upper() + word[1:]
+            string_upper += uppered + " "
+
+    return string_upper.strip()
+
+# c)
+
+def only_that_letter(string):
+    words = string.split()
+    new_string = ""
+
+    for word in words:
+        if word:
+            aux = word[0]
+            if aux == "A" or aux == "a":
+                new_string += word + " "
+    
+    return new_string.strip()
+
+'''Ejercicio 7.12. Funciones que reciben funciones.
+a) Escribir una funcion llamada map, que reciba una función y una lista y devuelva la lista
+que resulta de aplicar la función recibida a cada uno de los elementos de la lista recibida.
+b) Escribir una función llamada filter, que reciba una función y una lista y devuelva una
+lista con los elementos de la lista recibida para los cuales la función recibida devuelve un
+valor verdadero.'''
+
+# a)
+
+def map(func, list):
+    new_list = []
+
+    for e in list:
+        new_list.append(func(e))
+    
+    return new_list
+
+# b)
+
+def filter(func, list):
+    new_list = []
+
+    for e in list:
+        aux = func(e)
+        if aux:
+            new_list.append(e)
+    
+    return new_list
+
+'''Ejercicio 7.11. ⋆ Plegado de un texto. 
+
+Escribir una función que reciba un párrafo de texto (pala-
+bras separadas por espacios) y una longitud n, y devuelva una lista conteniendo líneas de texto
+de longitud máxima n. Las líneas deben ser cortadas correctamente en los espacios (sin cortar
+las palabras). Asumir que ninguna palabra tiene longitud mayor a n.
+
+Ejemplo:
+>>> plegar('El viejo Señor Gómez pedía queso, kiwi y habas, pero le ha tocado
+↪ un saxofón', 20)
+['El viejo Señor Gómez', 'pedía queso, kiwi y', 'habas, pero le ha', 'tocado un
+↪ saxofón']'''
+
+def paragraph_n(text, n):
+    words = text.split()
+    result = []
+    line = ""
+
+    for word in words:
+        # Si agregar la palabra supera el largo n, guardamos la línea actual
+        if len(line) + len(word) + 1 > n:
+            result.append(line.strip())
+            line = ""
+
+        line += word + " "
+
+    # Agregamos la última línea si quedó algo
+    if line:
+        result.append(line.strip())
+
+    return result
+
+'''Ejercicio 8.1. Escribir una función que reciba una lista desordenada y un elemento, que:
+
+a) Busque todos los elementos coincidan con el pasado por parámetro y devuelva la can-
+tidad de coincidencias encontradas.
+
+b) Busque la primera coincidencia del elemento en la lista y devuelva su posición.
+c) Utilizando la función anterior, busque todos los elementos que coincidan con el pasado
+por parámetro y devuelva una lista con las posiciones.'''
+
+
+
+
+
+
+
+
+
+
+
         
 
 
